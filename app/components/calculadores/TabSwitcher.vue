@@ -29,5 +29,6 @@ defineEmits(['update:modelValue'])
 const tabs = [
   { id: 'adhesivos', label: 'Adhesivos' },
   { id: 'morteros', label: 'Morteros' },
+  { id: 'pastinas', label: 'Pastinas' },
 ]
 </script>

@@ -26,10 +26,14 @@
             <div v-show="activeTab === 'morteros'">
               <MorterosForm @calculated="onCalculated" />
             </div>
+            <div v-show="activeTab === 'pastinas'">
+              <PastinasForm @calculated="onCalculated" />
+            </div>
           </template>
           <template v-else>
             <AdhesivosResult v-if="activeTab === 'adhesivos'" :result="currentResult" @recalcular="recalcular" />
             <MorterosResult v-if="activeTab === 'morteros'" :result="currentResult" @recalcular="recalcular" />
+            <PastinasResult v-if="activeTab === 'pastinas'" :result="currentResult" @recalcular="recalcular" />
             <Disclaimers :tipo="activeTab" />
           </template>
         </div>
@@ -59,6 +63,7 @@ watch(activeTab, () => {
 const HERO_IMAGES = {
   adhesivos: '/images/hero/Adhesivos-S.png',
   morteros: '/images/hero/morteros.webp',
+  pastinas: '/images/hero/morteros.webp',
 }
 
 const heroImage = computed(() => HERO_IMAGES[activeTab.value] ?? HERO_IMAGES.adhesivos)

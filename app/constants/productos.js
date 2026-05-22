@@ -70,4 +70,19 @@ export const PRODUCTOS = {
     tipo: 'polvo',
     presentaciones: [{ label: '25 kg', kg: 25 }],
   },
+  PASTINA_AP: {
+    nombre: 'Klaukol Pastina Alta Performance',
+    nombre_corto: 'Klaukol Pastina AP',
+    tipo: 'polvo',
+    presentaciones: [{ label: '5 kg', kg: 5 }],
+  },
+  PASTINA_FLUIDA_PN: {
+    nombre: 'Klaukol Pastina Fluida PN',
+    nombre_corto: 'Klaukol Pastina Fluida PN',
+    tipo: 'polvo',
+    presentaciones: [
+      { label: '5 kg', kg: 5 },
+      { label: '1 kg', kg: 1 },
+    ],
+  },
 }
