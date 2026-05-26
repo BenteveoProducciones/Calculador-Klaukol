@@ -39,7 +39,7 @@
     </div>
 
     <div class="flex flex-col items-center gap-3 lg:gap-6">
-      <a href="#"
+      <a href="https://arg.sika.com/klaukol/es/puntos-ventas-klaukol.html" target="_blank" rel="noopener"
         class="flex flex-col md:flex-row items-center gap-2 bg-brand-red rounded-lg text-center lg:text-2xl text-white font-semibold uppercase p-2 md:px-12 lg:px-8">
         ¿Ya sabés lo que necesitás? Encontrá donde comprarlo
         <Icon name="material-symbols:arrow-right-alt-rounded" class="w-6 lg:w-8 h-6 lg:h-8 flex-shrink-0" />
