@@ -61,7 +61,7 @@ watch(activeTab, () => {
 })
 
 const HERO_IMAGES = {
-  adhesivos: '/images/hero/Adhesivos-S.png',
+  adhesivos: '/images/hero/adhesivos.webp',
   morteros: '/images/hero/morteros.webp',
   pastinas: '/images/hero/pastinas.webp',
 }
