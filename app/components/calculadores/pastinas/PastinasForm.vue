@@ -1,6 +1,10 @@
 <template>
   <div class="flex flex-col items-center gap-4 lg:gap-6">
 
+    <!-- Superficie -->
+    <FormNumberInput id="area-pastinas" v-model="inputs.area_m2" label="Superficie a pastinar (m²)" suffix="m²"
+      placeholder="Superficie" :step="0.5" class="w-full" />
+
     <!-- Tipo de revestimiento -->
     <div class="w-full flex flex-col gap-1">
       <FormLabel>Tipo de revestimiento</FormLabel>
@@ -79,10 +83,6 @@
         </label>
       </div>
     </div>
-
-    <!-- Superficie -->
-    <FormNumberInput id="area-pastinas" v-model="inputs.area_m2" label="Superficie a pastinar (m²)" suffix="m²"
-      placeholder="Superficie" :step="0.5" class="w-full" />
 
     <div class="w-full flex justify-center mt-2 lg:mt-6">
       <button :disabled="!isValid"

@@ -98,7 +98,7 @@ const superficies = [
   { key: 'placa_de_yeso', label: 'Placa de yeso' },
   { key: 'sobre_piso_existente', label: 'Sobre cerámico o porcelanato' },
   { key: 'superficie_de_madera', label: 'Madera' },
-  { key: 'carpeta', label: 'Carpeta' },
+  { key: 'carpeta', label: 'Carpeta / Revoque' },
 ]
 
 function calcular() {

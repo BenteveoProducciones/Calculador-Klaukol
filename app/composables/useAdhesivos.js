@@ -65,22 +65,32 @@ export function useAdhesivos() {
     const ancho = inputs.ancho_cm
     const maxDim = Math.max(largo, ancho)
 
+    if (inputs.tipo_pieza === 'venecitas') {
+      if (maxDim <= 15) return buildResult(PRODUCTOS.BLANCO_PRO, 3, '6×6 mm', false, 'Recomendado para piletas', area)
+      if (maxDim <= 20) return buildResult(PRODUCTOS.BLANCO_PRO, 4, '8×8 mm', false, 'Recomendado para piletas', area)
+      if (maxDim <= 30) return buildResult(PRODUCTOS.BLANCO_PRO, 5, '10×10 mm', false, 'Recomendado para piletas', area)
+      return buildResult(PRODUCTOS.BLANCO_PRO, 6, '12×12 mm', false, 'Recomendado para piletas', area)
+    }
+
+    if (inputs.tipo_pieza === 'ladrillo_refractario') {
+      return buildResult(PRODUCTOS.REFRACTARIO, 9, '6×6 mm', false, 'Recomendado para parrillas con ladrillo refractario', area)
+    }
+
+    if (inputs.placa_de_yeso) {
+      const { kg, llana } = getPastaConsumption('PLA_K', maxDim)
+      return buildResult(PRODUCTOS.PLA_K, kg, llana, false, null, area)
+    }
+
     if (inputs.superficie_de_madera) {
       const { kg, llana } = getPastaConsumption('ECOSTIK', maxDim)
       return buildResult(PRODUCTOS.ECOSTIK, kg, llana, false, null, area)
     }
 
-    if (inputs.placa_de_yeso) {
-      if (maxDim <= 30) {
-        const { kg, llana } = getPastaConsumption('PLA_K', maxDim)
-        return buildResult(PRODUCTOS.PLA_K, kg, llana, false, null, area)
-      } else {
-        const { kg, llana } = getPastaConsumption('ECOSTIK', maxDim)
-        return buildResult(PRODUCTOS.ECOSTIK, kg, llana, false, null, area)
-      }
+    if (inputs.losas_radiantes) {
+      return buildResult(PRODUCTOS.FLEX, 6, '12×12 mm', true, null, area)
     }
 
-    if (inputs.losas_radiantes || inputs.exterior || inputs.sobre_piso_existente) {
+    if (inputs.exterior || inputs.sobre_piso_existente) {
       const grande = esPiezaGrande(largo, ancho)
       const producto = grande ? PRODUCTOS.ULTRA_FLEX : PRODUCTOS.FLEX
       return buildResult(producto, 6, '12×12 mm', true, null, area)
@@ -104,16 +114,6 @@ export function useAdhesivos() {
         }
         return buildResult(PRODUCTOS.IMPERMEABLE_POTENCIADO, 6, '12×12 mm', true, null, area)
       }
-
-      case 'venecitas': {
-        if (maxDim <= 15) return buildResult(PRODUCTOS.BLANCO_PRO, 3, '6×6 mm', false, 'Recomendado para piletas', area)
-        if (maxDim <= 20) return buildResult(PRODUCTOS.BLANCO_PRO, 4, '8×8 mm', false, 'Recomendado para piletas', area)
-        if (maxDim <= 30) return buildResult(PRODUCTOS.BLANCO_PRO, 5, '10×10 mm', false, 'Recomendado para piletas', area)
-        return buildResult(PRODUCTOS.BLANCO_PRO, 6, '12×12 mm', false, 'Recomendado para piletas', area)
-      }
-
-      case 'ladrillo_refractario':
-        return buildResult(PRODUCTOS.REFRACTARIO, 9, '6×6 mm', false, 'Recomendado para parrillas con ladrillo refractario', area)
 
       default:
         return null
