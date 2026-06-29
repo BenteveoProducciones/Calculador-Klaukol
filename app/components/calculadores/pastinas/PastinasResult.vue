@@ -3,24 +3,32 @@
 
     <div class="border-2 border-brand-red rounded-xl overflow-hidden">
       <div class="flex flex-col gap-3 lg:gap-6 p-3 lg:p-6">
-        <div class="flex flex-col lg:flex-row lg:justify-between gap-2">
-          <div class="lg:flex lg:flex-col lg:gap-1">
-            <p class="text-sm lg:text-base font-semibold uppercase tracking-widest text-brand-red">
-              Producto recomendado
-            </p>
-            <p class="text-2xl lg:text-4xl font-semibold leading-tight">
-              {{ nombreProducto }}<sup class="text-xs lg:text-xl align-super">®</sup>
-            </p>
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+          <div class="flex justify-between items-center gap-3 lg:flex-col lg:items-start lg:gap-1">
+            <div>
+              <p class="text-sm lg:text-base font-semibold uppercase tracking-widest text-brand-red">
+                Producto recomendado
+              </p>
+              <p class="text-xl lg:text-2xl font-semibold leading-tight text-balance">
+                {{ nombreProducto }}<sup class="text-xs lg:text-base align-super">®</sup>
+              </p>
+            </div>
+            <img v-if="result.producto.imagen" :src="result.producto.imagen" :alt="nombreProducto"
+              class="w-20 h-fit object-contain flex-shrink-0 lg:hidden">
           </div>
 
-          <div class="grid grid-cols-2 gap-2 lg:gap-3">
-            <div class="lg:w-52 lg:h-fit flex flex-col lg:justify-center bg-brand-gray-mid rounded-lg p-2 lg:p-5">
-              <p class="text-xs lg:text-base text-brand-gray-dark font-medium">Consumo</p>
-              <p class="lg:text-2xl font-semibold">{{ result.consumo_kg_m2 }} kg/m²</p>
-            </div>
-            <div class="lg:w-52 lg:h-fit flex flex-col lg:justify-center bg-brand-gray-mid rounded-lg p-2 lg:p-5">
-              <p class="text-xs lg:text-base text-brand-gray-dark font-medium">Total de pastina</p>
-              <p class="lg:text-2xl font-semibold">{{ totalKgFormatted }} kg</p>
+          <div class="flex items-center gap-2 lg:gap-3">
+            <img v-if="result.producto.imagen" :src="result.producto.imagen" :alt="nombreProducto"
+              class="w-28 h-fit object-contain flex-shrink-0 hidden lg:block">
+            <div class="flex-1 grid grid-cols-2 gap-2 lg:gap-3">
+              <div class="lg:w-52 flex flex-col justify-center bg-brand-gray-mid rounded-lg p-2 lg:p-5">
+                <p class="text-xs lg:text-base text-brand-gray-dark font-medium">Consumo</p>
+                <p class="lg:text-2xl font-semibold">{{ result.consumo_kg_m2 }} kg/m²</p>
+              </div>
+              <div class="lg:w-52 flex flex-col justify-center bg-brand-gray-mid rounded-lg p-2 lg:p-5">
+                <p class="text-xs lg:text-base text-brand-gray-dark font-medium">Total de pastina</p>
+                <p class="lg:text-2xl font-semibold">{{ totalKgFormatted }} kg</p>
+              </div>
             </div>
           </div>
         </div>
