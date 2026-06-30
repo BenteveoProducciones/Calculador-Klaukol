@@ -5,21 +5,21 @@
       <div class="flex flex-col gap-3 lg:gap-6 p-3 lg:p-6">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
           <div class="flex justify-between items-center gap-3 lg:flex-col lg:items-start lg:gap-1">
-            <div>
+            <div class="flex flex-col gap-1">
               <p class="text-sm lg:text-base font-semibold uppercase tracking-widest text-brand-red">
                 Producto recomendado
               </p>
-              <p class="text-xl lg:text-2xl font-semibold leading-tight text-balance">
+              <p class="w-fit flex items-start gap-1 text-xl lg:text-2xl font-semibold leading-tight">
                 {{ nombreProducto }}<sup class="text-xs lg:text-base align-super">®</sup>
               </p>
             </div>
             <img v-if="result.producto.imagen" :src="result.producto.imagen" :alt="nombreProducto"
-              class="w-20 h-fit object-contain flex-shrink-0 lg:hidden">
+              class="w-[60px] md:w-[84px] h-[52px] md:h-[72px] object-contain flex-shrink-0 lg:hidden">
           </div>
 
           <div class="flex items-center gap-2 lg:gap-3">
             <img v-if="result.producto.imagen" :src="result.producto.imagen" :alt="nombreProducto"
-              class="w-28 h-fit object-contain flex-shrink-0 hidden lg:block">
+              class="w-[102px] xxl:w-[120px] h-[88px] xxl:h-[104px] object-contain flex-shrink-0 hidden lg:block">
             <div class="flex-1 grid grid-cols-2 gap-2 lg:gap-3">
               <div class="lg:w-52 flex flex-col justify-center bg-brand-gray-mid rounded-lg p-2 lg:p-5">
                 <p class="text-xs lg:text-base text-brand-gray-dark font-medium">Consumo</p>
