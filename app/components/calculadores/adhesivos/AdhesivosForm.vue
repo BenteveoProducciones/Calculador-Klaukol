@@ -26,11 +26,19 @@
       <FormLabel>Tipo de superficie de colocación</FormLabel>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
         <label v-for="sup in superficies" :key="sup.key"
-          class="flex justify-center items-center text-center border-2 border-brand-gray-mid rounded-lg text-xs lg:text-base font-medium cursor-pointer transition-all duration-150 py-2 px-3"
-          :class="inputs[sup.key]
-            ? 'border-brand-red bg-brand-red text-white'
-            : 'border-brand-gray-mid bg-white'">
-          <input v-model="inputs[sup.key]" type="checkbox" class="sr-only" />
+          class="flex justify-center items-center text-center border-2 border-brand-gray-mid rounded-lg text-xs lg:text-base font-medium transition-all duration-150 py-2 px-3"
+          :class="[
+            estaDeshabilitada(sup.key)
+              ? 'border-brand-gray-mid bg-brand-gray-mid text-brand-gray-dark/50 cursor-not-allowed'
+              : 'cursor-pointer',
+            !estaDeshabilitada(sup.key) && inputs[sup.key]
+              ? 'border-brand-red bg-brand-red text-white'
+              : '',
+            !estaDeshabilitada(sup.key) && !inputs[sup.key]
+              ? 'border-brand-gray-mid bg-white'
+              : ''
+          ]">
+          <input v-model="inputs[sup.key]" type="checkbox" :disabled="estaDeshabilitada(sup.key)" class="sr-only" />
           {{ sup.label }}
         </label>
       </div>
@@ -81,6 +89,7 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
 import { useAdhesivos } from '~/composables/useAdhesivos'
 
 const emit = defineEmits(['calculated'])
@@ -96,10 +105,21 @@ const tiposPieza = [
 
 const superficies = [
   { key: 'placa_de_yeso', label: 'Placa de yeso' },
-  { key: 'sobre_piso_existente', label: 'Sobre cerámico o porcelanato' },
+  { key: 'sobre_piso_existente', label: 'Sobre cerámico o porcelanato existente' },
   { key: 'superficie_de_madera', label: 'Madera' },
   { key: 'carpeta', label: 'Carpeta / Revoque' },
 ]
+
+const SUPERFICIES_ANULADAS_POR_REFRACTARIO = ['placa_de_yeso', 'sobre_piso_existente', 'superficie_de_madera']
+
+function estaDeshabilitada(key) {
+  return inputs.tipo_pieza === 'ladrillo_refractario' && SUPERFICIES_ANULADAS_POR_REFRACTARIO.includes(key)
+}
+
+watch(() => inputs.tipo_pieza, (tipo) => {
+  if (tipo !== 'ladrillo_refractario') return
+  SUPERFICIES_ANULADAS_POR_REFRACTARIO.forEach(key => { inputs[key] = false })
+})
 
 function calcular() {
   if (!isValid.value) return

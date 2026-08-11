@@ -31,9 +31,15 @@ export const TIPOS_REVESTIMIENTO = [
   {
     value: 'ceramica_esmaltada',
     label: 'Cerámica esmaltada',
-    sublabel: '20x20 cm',
     absorcion: 'alta',
-    tamanos: [{ value: '20x20', label: '20x20 cm' }],
+    tamanos: [
+      { value: '30x30', label: '30x30 cm' },
+      { value: '40x40', label: '40x40 cm' },
+      { value: '50x50', label: '50x50 cm' },
+      { value: '60x60', label: '60x60 cm' },
+      { value: '70x70', label: '70x70 cm' },
+      { value: '80x80', label: '80x80 cm' },
+    ],
   },
   {
     value: 'porcellanato',
@@ -71,7 +77,12 @@ const CONSUMO_TABLE = {
     '15x15': { 2: 0.22, 3: 0.33, 5: 0.56, 10: 1.12 },
   },
   ceramica_esmaltada: {
-    '20x20': { 2: 0.38, 3: 0.66, 5: 0.96, 10: 1.92 },
+    '30x30': { 2: 0.30, 3: 0.52, 5: 0.76, 10: 1.53 },
+    '40x40': { 2: 0.22, 3: 0.39, 5: 0.57, 10: 1.15 },
+    '50x50': { 2: 0.15, 3: 0.26, 5: 0.38, 10: 0.76 },
+    '60x60': { 2: 0.15, 3: 0.26, 5: 0.38, 10: 0.76 },
+    '70x70': { 2: 0.15, 3: 0.26, 5: 0.38, 10: 0.76 },
+    '80x80': { 2: 0.15, 3: 0.26, 5: 0.38, 10: 0.76 },
   },
   porcellanato: {
     '30x30': { 2: 0.30, 3: 0.52, 5: 0.76, 10: 1.53 },

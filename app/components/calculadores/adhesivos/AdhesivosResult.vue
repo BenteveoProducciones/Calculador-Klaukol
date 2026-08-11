@@ -66,21 +66,12 @@
       </div> -->
     </div>
 
-    <div class="flex flex-col gap-1">
+    <div v-if="result.llana" class="flex flex-col gap-1">
       <p class="text-sm lg:text-base text-brand-red font-semibold uppercase">Llana recomendada</p>
-      <div class="flex flex-col lg:grid lg:grid-cols-3 gap-2 lg:gap-3">
-        <div
-          class="bg-brand-gray-mid rounded-lg lg:text-center text-xs lg:text-base font-medium py-2 lg:py-3 px-3 lg:px-5">
-          <p>Usá una llana de <span class="text-brand-red">8x8 mm</span> en piezas hasta 20x20 cm</p>
-        </div>
-        <div
-          class="bg-brand-gray-mid rounded-lg lg:text-center text-xs lg:text-base font-medium py-2 lg:py-3 px-3 lg:px-5">
-          <p>Usá una llana de <span class="text-brand-red">10x10 mm</span> en piezas hasta 30x30 cm</p>
-        </div>
-        <div
-          class="bg-brand-gray-mid rounded-lg lg:text-center text-xs lg:text-base font-medium py-2 lg:py-3 px-3 lg:px-5">
-          <p>Usá una llana de <span class="text-brand-red">12x12 mm</span> en piezas hasta 60x60 cm</p>
-        </div>
+      <div
+        class="bg-brand-gray-mid rounded-lg lg:text-center text-xs lg:text-base font-medium py-2 lg:py-3 px-3 lg:px-5">
+        <p>Usá una llana de <span class="text-brand-red">{{ llanaTexto }}</span>{{ result.llana_rango ? ` en piezas
+          hasta ${result.llana_rango}` : '' }}</p>
       </div>
     </div>
 
@@ -116,4 +107,6 @@ defineEmits(['recalcular'])
 const unidadPlural = computed(() =>
   props.result.producto.unidad === 'balde' ? 'baldes' : 'bolsas'
 )
+
+const llanaTexto = computed(() => props.result.llana?.replace('×', 'x') ?? '')
 </script>

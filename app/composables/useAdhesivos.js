@@ -18,6 +18,14 @@ function getPastaConsumption(key, maxDim) {
   return { kg: 6, llana: '12×12 mm' }
 }
 
+const LLANA_RANGOS = {
+  '4×4 mm': '15x15 cm',
+  '6×6 mm': '20x20 cm',
+  '8×8 mm': '20x20 cm',
+  '10×10 mm': '30x30 cm',
+  '12×12 mm': '30x30 cm',
+}
+
 function buildResult(producto, consumo_kg_m2, llana, doble_encolado, comentario, area) {
   const consumo_total_kg = area * consumo_kg_m2
   return {
@@ -30,6 +38,7 @@ function buildResult(producto, consumo_kg_m2, llana, doble_encolado, comentario,
       cantidad: Math.ceil(consumo_total_kg / p.kg),
     })),
     llana,
+    llana_rango: LLANA_RANGOS[llana] ?? null,
     doble_encolado,
     comentario,
   }
@@ -66,10 +75,13 @@ export function useAdhesivos() {
     const maxDim = Math.max(largo, ancho)
 
     if (inputs.tipo_pieza === 'venecitas') {
-      if (maxDim <= 15) return buildResult(PRODUCTOS.BLANCO_PRO, 3, '6×6 mm', false, 'Recomendado para piletas', area)
-      if (maxDim <= 20) return buildResult(PRODUCTOS.BLANCO_PRO, 4, '8×8 mm', false, 'Recomendado para piletas', area)
-      if (maxDim <= 30) return buildResult(PRODUCTOS.BLANCO_PRO, 5, '10×10 mm', false, 'Recomendado para piletas', area)
-      return buildResult(PRODUCTOS.BLANCO_PRO, 6, '12×12 mm', false, 'Recomendado para piletas', area)
+      const comentario = inputs.sobre_piso_existente
+        ? 'Para realizar esta aplicación contactar al departamento técnico de Sika'
+        : 'Recomendado para piletas'
+      if (maxDim <= 15) return buildResult(PRODUCTOS.BLANCO_PRO, 3, '6×6 mm', false, comentario, area)
+      if (maxDim <= 20) return buildResult(PRODUCTOS.BLANCO_PRO, 4, '8×8 mm', false, comentario, area)
+      if (maxDim <= 30) return buildResult(PRODUCTOS.BLANCO_PRO, 5, '10×10 mm', false, comentario, area)
+      return buildResult(PRODUCTOS.BLANCO_PRO, 6, '12×12 mm', false, comentario, area)
     }
 
     if (inputs.tipo_pieza === 'ladrillo_refractario') {

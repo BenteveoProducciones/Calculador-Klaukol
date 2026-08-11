@@ -13,7 +13,7 @@
             Calculá el material <span>para tu obra</span>
           </p>
           <p class="text-xs lg:text-xl font-medium">
-            Ingresá los datos de tu proyecto y conocé qué producto usar y la cantidad.
+            Ingresá los datos de tu proyecto, conocé qué productos usar, la cantidad y donde comprarlos
           </p>
         </div>
 
