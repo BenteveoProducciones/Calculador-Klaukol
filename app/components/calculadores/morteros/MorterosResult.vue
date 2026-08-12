@@ -22,9 +22,16 @@
               <p class="text-sm lg:text-base font-semibold uppercase tracking-widest text-brand-red">
                 Producto recomendado
               </p>
-              <p class="w-fit flex items-start gap-1 text-xl lg:text-2xl font-semibold leading-tight">
-                {{ result.producto.nombre }}<sup class="text-xs lg:text-base align-super">®</sup>
-              </p>
+              <div class="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center lg:items-start xl:items-center gap-1 md:gap-3 lg:gap-1 xl:gap-3">
+                <p class="w-fit flex items-start gap-1 text-xl lg:text-2xl font-semibold leading-tight">
+                  {{ result.producto.nombre }}<sup class="text-xs lg:text-base align-super">®</sup>
+                </p>
+                <a v-if="result.producto.url" :href="result.producto.url" target="_blank" rel="noopener"
+                  class="w-fit flex items-center gap-1 border-b border-brand-red text-xs lg:text-base text-brand-red font-semibold uppercase">
+                  Más info.
+                  <Icon name="material-symbols:open-in-new-rounded" class="w-3.5 lg:w-4 h-3.5 lg:h-4 flex-shrink-0" />
+                </a>
+              </div>
             </div>
             <img v-if="result.producto.imagen" :src="result.producto.imagen" :alt="result.producto.nombre"
               class="w-[60px] md:w-[84px] h-[52px] md:h-[72px] object-contain flex-shrink-0 lg:hidden">
